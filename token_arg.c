@@ -8,18 +8,28 @@
 
 char **token_arg(char *_str)
 {
-	int i = 0, strs_size = 64;
+	int i = 0, strs_size = 64, newSize = 0, ss, ns;
 	char **_args;
 	char *_arg;
 
 	_args = malloc(strs_size * (sizeof(char *)));
+	if (!_args)
+	{
+		perror("Allocation unsucceded\n");
+		exit(98);
+	}
 	_arg = strtok(_str, " ");
-	while (_arg)
+	while (_arg != NULL)
 	{
 		_args[i] = _arg;
+		i++;
 		if (i >= strs_size)
 		{
-			_args = _realloc(_args, strs_size * (sizeof(char *)));
+			newSize = strs_size + 64;
+			ss = (strs_size * (sizeof(char *)));
+			ns = (strs_size * (sizeof(char *)));
+			_args = _realloc(_args, ss, ns);
+			strs_size = newSize;
 			if (!_args)
 			{
 				perror("Unable to allocate memory\n");
@@ -27,7 +37,6 @@ char **token_arg(char *_str)
 			}
 		}
 		_arg = strtok(NULL, " ");
-		i++;
 	}
 	_args[i] == NULL;
 	return (_args);

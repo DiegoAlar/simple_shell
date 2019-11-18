@@ -34,6 +34,6 @@ char **token_arg(char *_str);
 int exec_fun(char **_args);
 int built_in_handler(char **_args);
 int exec_handler(char **_args);
-
+void *_realloc(void *ptr, int old_size, int new_size);
 
 #endif

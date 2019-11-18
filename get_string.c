@@ -5,8 +5,8 @@
   */
 char *get_string(void)
 {
-	char *_str;
-	int _size_str = 0;
+	char *_str = NULL;
+	size_t _size_str = 0;
 
 	getline(&_str, &_size_str, stdin);
 	return (_str);
