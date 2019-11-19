@@ -17,6 +17,8 @@ int main(void)
 		_report = exec_fun(_args);
 		free(_str);
 		free(_args);
+		_str = NULL;
+		_args = NULL;
 	} while (_report);
 
 	return (0);

@@ -9,16 +9,16 @@
 int exec_handler(char **_args)
 {
 	tpe_comm arr_comm[] = {
-		{"ls", "/bin/ls"}}
-	int status;
+		{"ls", "/bin/ls"}};
+	int status, PID, i;
 
 	PID = fork();
 	if (PID == 0)
 	{
 		for (i = 0; i < 1; i++)
 		{
-			if (args[0] == arr_comm[i].str || args[0] == arr_comm[i].dir)
-				execve(arr_comm[i].dir, args);
+			if (_args[0] == arr_comm[i].str || _args[0] == arr_comm[i].dir)
+				execve(arr_comm[i].dir, _args, NULL);
 		}
 	}
 	else if (PID < 0)
@@ -26,7 +26,7 @@ int exec_handler(char **_args)
 	else
 	{
 		do {
-			waitpid(pid, &status, WUNTRACED);
+			waitpid(PID, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	return (1);

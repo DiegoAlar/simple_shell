@@ -14,14 +14,17 @@ int exec_fun(char  **_args)
 
 	for (i = 0; i < 4; i++)
 	{
-		if (args[0] == build_do[i])
-			return (built_in_handler(args));
+		if (strcmp(_args[0], _build_do[i]) == 0)
+		{
+			return (built_in_handler(_args));
+		}
 	}
 	for (j = 0; j < 1; j++)
 	{
-		if (args[0] == exec_command[j])
-			return (exec_handler(args));
+		if (_args[0] == _exec_command[j])
+			return (exec_handler(_args));
 	}
-	perror(args[0]);
+	printf("entered here");
+	perror(_args[0]);
 	return (1);
 }

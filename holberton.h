@@ -36,5 +36,9 @@ int exec_fun(char **_args);
 int built_in_handler(char **_args);
 int exec_handler(char **_args);
 void *_realloc(void *ptr, int old_size, int new_size);
+int fun_cd(char **);
+int fun_pwd(char **);
+int fun_exit(char **);
+int fun_env(char **);
 
 #endif
