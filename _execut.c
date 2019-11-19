@@ -21,10 +21,9 @@ int exec_fun(char  **_args)
 	}
 	for (j = 0; j < 1; j++)
 	{
-		if (_args[0] == _exec_command[j])
+		if (strcmp(_args[0], _exec_command[j]) == 0)
 			return (exec_handler(_args));
 	}
-	printf("entered here");
 	perror(_args[0]);
 	return (1);
 }

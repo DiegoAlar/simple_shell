@@ -10,19 +10,21 @@ int exec_handler(char **_args)
 {
 	tpe_comm arr_comm[] = {
 		{"ls", "/bin/ls"}};
-	int status, PID, i;
+	int status, childPID, i;
 
-	PID = fork();
-	if (PID == 0)
+	childPID = fork();
+	if (childPID == 0)
 	{
 		for (i = 0; i < 1; i++)
 		{
-			if (_args[0] == arr_comm[i].str || _args[0] == arr_comm[i].dir)
+			if (strcmp(_args[0], arr_comm[i].str) == 0 || strcmp(_args[0], arr_comm[i].dir) == 0)
 				execve(arr_comm[i].dir, _args, NULL);
 		}
 	}
 	else if (PID < 0)
+	{
 		perror("command not ok");
+	}
 	else
 	{
 		do {

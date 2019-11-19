@@ -9,6 +9,5 @@ char *get_string(void)
 	size_t _size_str = 0;
 
 	getline(&_str, &_size_str, stdin);
-	printf("this is line: %s\n", _str);
 	return (_str);
 }

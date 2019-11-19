@@ -8,21 +8,12 @@
 
 char **token_arg(char *_str)
 {
-	int i = 0, strs_size = 0, numCom = 0;
+	int i = 0, numCom = 0;
 	char **_args;
 	char *_arg;
+	char *str_sep = " \t\r\n\a";
 
-	/*while (_str[strs_size])
-	{
-		if (_str[strs_size] != ' ' && _str[strs_size + 1] == ' ')
-		{
-			numCom++;
-		}
-		strs_size++;
-	}
-	if (numCom == 0)
-		numCom = 1;*/
-	while (_str[strs_size])
+	while (_str[numCom])
 		numCom++;
 	_args = malloc(numCom * (sizeof(char *)));
 	if (!_args)
@@ -30,11 +21,11 @@ char **token_arg(char *_str)
 		perror("Allocation unsucceded\n");
 		exit(98);
 	}
-	_arg = strtok(_str, " ");
+	_arg = strtok(_str, str_sep);
 	while (_arg != NULL)
 	{
 		_args[i] = _arg;
-		_arg = strtok(NULL, " ");
+		_arg = strtok(NULL, str_sep);
 		i++;
 	}
 	_args[i] = NULL;

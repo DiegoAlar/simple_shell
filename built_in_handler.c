@@ -14,7 +14,7 @@ int built_in_handler(char **_args)
 		{"env", fun_env		}
 	};
 	for (; i < 4; i++)
-		if (arr_bu[i].s == _args[0])
+		if (strcmp(arr_bu[i].s, _args[0]) == 0)
 			return (arr_bu[i].fun(_args));
 	return (1);
 
