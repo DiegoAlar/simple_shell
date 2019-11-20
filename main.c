@@ -5,7 +5,7 @@
  *Return: 0 on success
  */
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	char *_str;
 	char **_args;
@@ -14,7 +14,7 @@ int main(int ac, char **av)
 	do {
 		_str = get_string();
 		_args = token_arg(_str);
-		_report = exec_fun(_args, av);
+		_report = exec_fun(_args, av, env);
 		free(_str);
 		free(_args);
 		_str = NULL;

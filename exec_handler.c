@@ -7,12 +7,14 @@
  *Return: Integer 1 or 0
  */
 
-int exec_handler(char **_args, char **av)
+int exec_handler(char **_args, char **av, char **env)
 {
 	tpe_comm arr_comm[] = {
 		{"ls", "/bin/ls"}};
-	int status, childPID, i, _flag = 0;
+	int status, childPID, i, _flag = 0, kill_is;
 
+	kill_is = issaty(STDIN_FILENO);
+	func_env(char *_com, char **env);
 	for (i = 0; i < 1; i++)
 	{
 		if (strcmp(_args[0], arr_comm[i].str) == 0
@@ -42,6 +44,7 @@ int exec_handler(char **_args, char **av)
 		errno = ENOENT;
 		perror(av[0]);
 	}
-
+	if (kill_is == 0)
+		return (0);
 	return (1);
 }
