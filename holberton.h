@@ -32,9 +32,9 @@ typedef struct exec_hand
 } tpe_comm;
 char *get_string(void);
 char **token_arg(char *_str);
-int exec_fun(char **_args);
+int exec_fun(char **_args, char **av);
 int built_in_handler(char **_args);
-int exec_handler(char **_args);
+int exec_handler(char **_args, char **av);
 void *_realloc(void *ptr, int old_size, int new_size);
 int fun_cd(char **);
 int fun_pwd(char **);

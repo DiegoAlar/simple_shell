@@ -5,28 +5,24 @@
  *Return: 0 on success
  */
 
-int main(void)
+int main(int ac, char **av)
 {
 	char *_str;
 	char **_args;
-	int _report, i = 0;
+	int _report;
 
 	do {
 		_str = get_string();
 		_args = token_arg(_str);
-		while (_args[i])
-		{
-			printf("%s\n", _args[i]);
-			i++;
-
-		}
-		_report = exec_fun(_args);
+		_report = exec_fun(_args, av);
 		free(_str);
 		free(_args);
 		_str = NULL;
 		_args = NULL;
-		i = 0;
+		printf("value of report : %d\n", _report);
+
 	} while (_report);
 
+	ac = ac;
 	return (0);
 }
