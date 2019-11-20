@@ -36,7 +36,6 @@ int fun_exit(char ** _args)
 	if (strcmp(_args[0], ex) == 0)
 	{
 
-		printf("got into the final fun_exit");
 		return (0);
 	}
 	return (1);

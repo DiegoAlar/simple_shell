@@ -16,7 +16,6 @@ int built_in_handler(char **_args)
 	for (; i < 4; i++)
 		if (strcmp(arr_bu[i].s, _args[0]) == 0)
 		{
-			printf("got into if in build handler");
 			return (arr_bu[i].fun(_args));
 		}
 	return (1);
