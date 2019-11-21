@@ -4,6 +4,7 @@
  *exec_fun - function to decide the execution based on arguments
  *@_args: arguments
  *@av: argument to print the name of the shell
+ *@env: eviroment variable
  *Return: 1 or 0 integer
  */
 

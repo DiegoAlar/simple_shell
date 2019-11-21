@@ -7,31 +7,105 @@
   */
 char *func_env(char *_com, char **env)
 {
-	int i;
-	char *_exe_str;
+	int i = 0;
 	char *_delim = "=:";
+	char *_slash = "/";
 	char *key = "PATH";
-	char *res, char **dirs_in_PATH;
+	char *concat_dir;
+	char *concat_param;
+	char *_temp;
+	char *_token;
 
-	puts("entered func_env");
-	for (i = 0; env[i]; i++)
+	while (env[i])
 	{
-		_exe_str = strtok(env[i], _delim);
-		printf("%s\n", _exe_str);
-		if (strcmp(_exe_str, key) == 0)
+		_temp = _strdup(env[i]);
+		_token = strtok(_temp, _delim);
+		if (strcmp(_token, key) == 0)
 		{
-			puts("entered if in func_env");
-			while (_exe_str)
+			while (_token)
 			{
-
-				 printf("%s\n", _exe_str);
-				_exe_str = strtok(NULL, _delim);
-				res = strcat(_exe_str, _com);
-				if (access(res, F_OK) == 0)
-			       		return (res);
-				free(res);
+				concat_dir = str_concat(_token, _slash);
+				concat_param = str_concat(concat_dir, _com);
+				if (access(concat_param, F_OK) == 0)
+				{
+					free(_temp);
+					free(concat_dir);
+					return (concat_param);
+				}
+				free(concat_dir);
+				free(concat_param);
+				_token = strtok(NULL, _delim);
 			}
 		}
+		free(_temp);
+		i++;
 	}
 	return (NULL);
+}
+
+/**
+ *_strdup - creates a copy of a given array
+ *@str: array to be copied
+ *Return:a pointer to the array
+ */
+char *_strdup(char *str)
+{
+	int i;
+	int j;
+	char *t;
+
+	i = 0;
+	if (str == NULL)
+		return (NULL);
+	while (str[i])
+	{
+		i++;
+	}
+	i++;
+	t = (char *) malloc(i * sizeof(char));
+	if (t == NULL)
+		return (NULL);
+	for (j = 0; j <= i; j++)
+	{
+		t[j] = str[j];
+	}
+	return (t);
+}
+
+/**
+ *str_concat - Concatenate two strings
+ *@s1: First string
+ *@s2: Second string
+ *Return:a pointer to the concatenated array
+ */
+char *str_concat(char *s1, char *s2)
+{
+	int i = 0, j = 0, k = 0, l = 0;
+	char *t;
+
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+	while (s1[i])
+	{
+		i++;
+	}
+	while (s2[j])
+	{
+		j++;
+	}
+	j++;
+	t = (char *) malloc((i + j) * sizeof(char));
+	if (t == NULL)
+		return (NULL);
+	for (k = 0; k < i; k++)
+	{
+		t[k] = s1[k];
+	}
+	for (l = 0; l <= j; l++)
+	{
+		t[i + l] = s2[l];
+	}
+	return (t);
 }

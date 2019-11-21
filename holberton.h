@@ -30,5 +30,7 @@ int fun_pwd(char **);
 int fun_exit(char **);
 int fun_envi(char **);
 char *func_env(char *_com, char **env);
+char *_strdup(char *str);
+char *str_concat(char *s1, char *s2);
 
 #endif
