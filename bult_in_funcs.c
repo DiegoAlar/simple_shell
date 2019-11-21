@@ -47,7 +47,7 @@ int fun_exit(char ** _args)
   *
   *
   */
-int fun_env(char ** _args)
+int fun_envi(char ** _args)
 {
 	printf("Entered fun_env function: %s\n", _args[0]);
 	return (1);

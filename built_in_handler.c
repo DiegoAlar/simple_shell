@@ -11,7 +11,7 @@ int built_in_handler(char **_args)
 		{"cd", fun_cd		},
 		{"pwd", fun_pwd		},
 		{"exit", fun_exit	},
-		{"env", fun_env		}
+		{"env", fun_envi	}
 	};
 	for (; i < 4; i++)
 		if (strcmp(arr_bu[i].s, _args[0]) == 0)

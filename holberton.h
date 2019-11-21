@@ -19,17 +19,6 @@ typedef struct bu_in
 	int (*fun)(char **);
 } tpe_bui;
 
-/**
- *struct exec_hand - structure to reference the right executable
- *@str: string to be evaluated
- *@dir: string indicating the executable file
- */
-
-typedef struct exec_hand
-{
-	char *str;
-	char *dir;
-} tpe_comm;
 char *get_string(void);
 char **token_arg(char *_str);
 int exec_fun(char **_args, char **av, char **env);
@@ -39,6 +28,7 @@ void *_realloc(void *ptr, int old_size, int new_size);
 int fun_cd(char **);
 int fun_pwd(char **);
 int fun_exit(char **);
-int fun_env(char **);
+int fun_envi(char **);
 char *func_env(char *_com, char **env);
+
 #endif

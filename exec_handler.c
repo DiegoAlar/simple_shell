@@ -9,34 +9,32 @@
 
 int exec_handler(char **_args, char **av, char **env)
 {
-	tpe_comm arr_comm[] = {
-		{"ls", "/bin/ls"}};
-	int status, childPID, i, _flag = 0, kill_is;
+	int status, childPID, _flag = 0, kill_is;
+	char *_str_ev;
 
-	kill_is = issaty(STDIN_FILENO);
-	func_env(char *_com, char **env);
-	for (i = 0; i < 1; i++)
+	_str_ev = NULL;
+	kill_is = 1;
+	kill_is = isatty(STDIN_FILENO);
+	puts("entered exec_handler");
+	_str_ev = func_env(_args[0], env);
+	if (_str_ev != NULL)
 	{
-		if (strcmp(_args[0], arr_comm[i].str) == 0
-				|| strcmp(_args[0], arr_comm[i].dir) == 0)
+		puts("entered if in exec handler");
+		_flag = 1;
+		childPID = fork();
+		if (childPID == 0)
 		{
-			_flag = 1;
-			childPID = fork();
-			if (childPID == 0)
-			{
-				execve(arr_comm[i].dir, _args, NULL);
-
-			}
-			else if (childPID < 0)
-			{
-				perror("command not ok");
-			}
-			else if (childPID > 0)
-			{
-				do {
-					waitpid(childPID, &status, WUNTRACED);
-				} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-			}
+			execve(_str_ev, _args, NULL);
+		}
+		else if (childPID < 0)
+		{
+			perror("command not ok");
+		}
+		else if (childPID > 0)
+		{
+			do {
+				waitpid(childPID, &status, WUNTRACED);
+			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		}
 	}
 	if (_flag == 0)
