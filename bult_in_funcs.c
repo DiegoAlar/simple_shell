@@ -33,7 +33,7 @@ int fun_exit(char ** _args)
 {
 	char *ex = "exit";
 
-	if (strcmp(_args[0], ex) == 0)
+	if (strcmp(_args[0], ex) == 0 )
 	{
 
 		return (0);

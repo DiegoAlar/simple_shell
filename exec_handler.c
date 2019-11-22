@@ -8,7 +8,7 @@
  *Return: Integer 1 or 0
  */
 
-int exec_handler(char **_args, char **av, char **env)
+int exec_handler(int *cicles, char **_args, char **av, char **env)
 {
 	int status, childPID, _flag = 0, kill_is;
 	char *_str_ev;
@@ -40,8 +40,8 @@ int exec_handler(char **_args, char **av, char **env)
 	}
 	if (_flag == 0 || (_flag == 1 && _str_ev == NULL))
 	{
-		errno = ENOENT;
-		perror(av[0]);
+
+		_printf("%s: %d: %s: not found\n", av[0], *cicles, _args[0]);
 	}
 	if (_flag == 2)
 		free(_str_ev);

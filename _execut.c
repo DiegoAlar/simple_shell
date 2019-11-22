@@ -8,7 +8,7 @@
  *Return: 1 or 0 integer
  */
 
-int exec_fun(char  **_args, char **av, char **env)
+int exec_fun(int *cicles, char  **_args, char **av, char **env)
 {
 	int i;
 	char *_build_do[] = {"cd", "pwd", "exit", "env"};
@@ -22,5 +22,5 @@ int exec_fun(char  **_args, char **av, char **env)
 		}
 	}
 
-	return (exec_handler(_args, av, env));
+	return (exec_handler(cicles, _args, av, env));
 }
