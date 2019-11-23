@@ -5,6 +5,7 @@
  *@_args: arguments
  *@av: argument to print the name of the shell
  *@env: eviroment variable
+ *@cicles: number of times a new command is pressed
  *Return: 1 or 0 integer
  */
 

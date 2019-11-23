@@ -11,10 +11,10 @@ char *func_env(char *_com, char **env)
 	char *_delim = "=:";
 	char *_slash = "/";
 	char *key = "PATH";
-	char *concat_dir;
-	char *concat_param;
-	char *_temp;
-	char *_token;
+	char *concat_dir = NULL;
+	char *concat_param = NULL;
+	char *_temp = NULL;
+	char *_token = NULL;
 
 	while (env[i])
 	{
@@ -22,12 +22,17 @@ char *func_env(char *_com, char **env)
 		_token = strtok(_temp, _delim);
 		if (strcmp(_token, key) == 0)
 		{
+			printf("entra 1");
 			while (_token)
 			{
+				printf("entra 2");
 				concat_dir = str_concat(_token, _slash);
+				printf("entra conca 1%s\n", concat_dir);
 				concat_param = str_concat(concat_dir, _com);
+				printf("entra conca 2%s\n", concat_param);
 				if (access(concat_param, F_OK) == 0)
 				{
+					printf("entra 3");
 					free(_temp);
 					free(concat_dir);
 					return (concat_param);

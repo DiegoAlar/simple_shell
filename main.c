@@ -10,6 +10,7 @@ int main(int ac, char **av, char **env)
 	char **_args = NULL;
 	int _report = 1, kill_is = 0, cicles = 1;
 	size_t _size_str;
+	char *no_command = "\n";
 
 	kill_is = 1;
 	kill_is = isatty(STDIN_FILENO);
@@ -17,15 +18,20 @@ int main(int ac, char **av, char **env)
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 	while (_report && (getline(&_str, &_size_str, stdin) != EOF))
 	{
-		_args = token_arg(_str);
-		_report = exec_fun(&cicles, _args, av, env);
-		free(_str);
-		free(_args);
-		_str = NULL;
-		_args = NULL;
-		if (kill_is)
+		if (strcmp(_str, no_command) != 0)
+		{
+			_args = token_arg(_str);
+			_report = exec_fun(&cicles, _args, av, env);
+			free(_str);
+			free(_args);
+			_str = NULL;
+			_args = NULL;
+			if (kill_is)
+				write(STDOUT_FILENO, "#cisfun$ ", 9);
+			cicles++;
+		}
+		else
 			write(STDOUT_FILENO, "#cisfun$ ", 9);
-		cicles++;
 	}
 
 	if (kill_is)
