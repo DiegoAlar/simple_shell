@@ -1,6 +1,9 @@
 #include"holberton.h"
 /**
  *main - function to control the shell process
+ *@ac:main argument, number of arguments
+ *@av:main argument, array of arguments
+ *@env:main argument, environmental variable
  *Return: 0 on success
  */
 
@@ -15,7 +18,9 @@ int main(int ac, char **av, char **env)
 	kill_is = 1;
 	kill_is = isatty(STDIN_FILENO);
 	if (kill_is)
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		_printf("#cisfun$ ");
+
+
 	while (_report && (getline(&_str, &_size_str, stdin) != EOF))
 	{
 		if (strcmp(_str, no_command) != 0)
@@ -27,15 +32,20 @@ int main(int ac, char **av, char **env)
 			_str = NULL;
 			_args = NULL;
 			if (kill_is)
-				write(STDOUT_FILENO, "#cisfun$ ", 9);
+				_printf("#cisfun$ ");
+
 			cicles++;
 		}
 		else
-			write(STDOUT_FILENO, "#cisfun$ ", 9);
+			_printf("#cisfun$ ");
+
 	}
 
 	if (kill_is)
-		write(STDOUT_FILENO, "\n", 1);
+		_printf("\n");
+
+	free(_str);
+	free(_args);
 	ac = ac;
 	return (0);
 }

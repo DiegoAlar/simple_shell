@@ -18,8 +18,8 @@
  */
 typedef struct tpesPer
 {
-        char t;
-        void (*f)(va_list, int *);
+	char t;
+	void (*f)(va_list, int *);
 } tpPer;
 /**
  *struct bu_in - structure to reference the right built in function
@@ -35,7 +35,7 @@ typedef void (*sighandler_t)(int);
 char *get_string(int *i);
 char **token_arg(char *_str);
 int exec_fun(int *cicles, char **_args, char **av, char **env);
-int built_in_handler(char **_args);
+int built_in_handler(char **_args, char **env);
 int exec_handler(int *cicles, char **_args, char **av, char **env);
 void *_realloc(void *ptr, int old_size, int new_size);
 int fun_cd(char **);
