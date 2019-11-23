@@ -12,11 +12,42 @@
 int exec_handler(int *cicles, char **_args, char **av, char **env)
 {
 	int status, childPID, _flag = 0;
-	char *_str_ev;
+	char *_str_ev = NULL;
+	DIR *dir_to_close;
+	struct stat *bf;
 
-	_str_ev = NULL;
-	if (access(_args[0], F_OK) == 0)
+	bf = malloc(sizeof(struct stat));
+	/*if (access(_args[0], F_OK) == 0)
+	{
+		printf("got into the access if / ");
 		_str_ev = _args[0];
+	}*/
+
+	if (stat(_args[0], bf) == 0 && S_ISREG(bf->st_mode))
+	{
+		printf("st_mode %o\n ", bf->st_mode);
+		printf("got into the access if / ");
+		_str_ev = _args[0];
+		free(bf);
+	}
+	else if (_args[0][0] == '/')
+	{
+		printf("got into firts if / \n");
+		dir_to_close = opendir(_args[0]);
+
+		if (dir_to_close == NULL)
+		{
+			_printf("%s: %d: %s: command not found\n", av[0], *cicles, _args[0]);
+			return (1);
+		}
+		else
+		{
+			printf("got into firts else  /\n ");
+			closedir(dir_to_close);
+			_printf("%s: %d: %s: Permission denied\n", av[0], *cicles, _args[0]);
+			return (1);
+		}
+	}
 	else
 	{
 		_str_ev = func_env(_args[0], env);
@@ -24,6 +55,7 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 	}
 	if (_str_ev != NULL)
 	{
+		printf("got into fork cicle\n");
 		_flag++;
 		childPID = fork();
 		if (childPID == 0)

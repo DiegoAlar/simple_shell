@@ -20,7 +20,7 @@ char *func_env(char *_com, char **env)
 	{
 		_temp = _strdup(env[i]);
 		_token = strtok(_temp, _delim);
-		if (strcmp(_token, key) == 0)
+		if (_strcmp(_token, key) == 0)
 		{
 			while (_token)
 			{

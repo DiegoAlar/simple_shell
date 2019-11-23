@@ -9,8 +9,8 @@
 char **token_arg(char *_str)
 {
 	int i = 0, numCom = 0;
-	char **_args;
-	char *_arg;
+	char **_args = NULL;
+	char *_arg = NULL;
 	char *str_sep = " \t\r\n\a";
 
 	while (_str[numCom])

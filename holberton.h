@@ -10,6 +10,8 @@
 #include <errno.h>
 #include <signal.h>
 #include <sys/signal.h>
+#include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * struct tpesPer - structure for percentage formats

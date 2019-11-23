@@ -23,7 +23,7 @@ int main(int ac, char **av, char **env)
 
 	while (_report && (getline(&_str, &_size_str, stdin) != EOF))
 	{
-		if (strcmp(_str, no_command) != 0)
+		if (_strcmp(_str, no_command) != 0)
 		{
 			_args = token_arg(_str);
 			_report = exec_fun(&cicles, _args, av, env);
