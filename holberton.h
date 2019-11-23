@@ -53,4 +53,5 @@ void printInt(va_list va, int *p);
 void printDec(va_list va, int *p);
 int funper(const char *format, int i, va_list toPrint, int *pun);
 int print_Number(int n, int *p);
+int _strcmp(char *s1, char *s2);
 #endif
