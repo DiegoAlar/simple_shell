@@ -17,6 +17,8 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 	struct stat *bf;
 
 	bf = malloc(sizeof(struct stat));
+	if (bf == NULL)
+		return (1);
 	if (stat(_args[0], bf) == 0 && S_ISREG(bf->st_mode))
 		_str_ev = _args[0];
 	else if (stat(_args[0], bf) == 0 && S_ISDIR(bf->st_mode))
@@ -63,10 +65,7 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 		}
 	}
 	if (_flag == 0 || (_flag == 1 && _str_ev == NULL))
-	{
-
 		_printf("%s: %d: %s: not found\n", av[0], *cicles, _args[0]);
-	}
 	free(bf);
 	if (_flag == 2)
 		free(_str_ev);
