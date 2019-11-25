@@ -24,20 +24,33 @@ char *func_env(char *_com, char **env)
 		{
 			while (_token)
 			{
+				printf("token : %s\n", _token);
 				concat_dir = str_concat(_token, _slash);
+				printf("concat_dir : %s\n", concat_dir);
 				concat_param = str_concat(concat_dir, _com);
+				printf("concat_param : %s\n", concat_param);
 				if (access(concat_param, F_OK) == 0)
 				{
+					printf("got into executable success\n");
+					printf("_temp pointer %p, string %s\n", _temp, _temp);
 					free(_temp);
+
 					free(concat_dir);
 					return (concat_param);
 				}
+				printf("before free concat_dir %p, string %s\n", concat_dir, concat_dir);
 				free(concat_dir);
+				printf("before free concat_param %p, string %s!\n", concat_param, concat_param);
 				free(concat_param);
+				printf("After free\n");
 				_token = strtok(NULL, _delim);
+				concat_param = NULL;
+				concat_dir = NULL;
 			}
+			_token = NULL;
 		}
 		free(_temp);
+		_temp = NULL;
 		i++;
 	}
 	return (NULL);
