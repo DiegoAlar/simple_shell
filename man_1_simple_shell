@@ -82,3 +82,53 @@ When first starting,
      cat test_ls_2 | ./hsh
      in which case the result will be:
      whatever execution inside the file test_ls_s
+
+     .&  &&
+     .It "Redirection operators:"
+     .This operation is not available yet
+     .Ss Quoting
+     Quoting is used to remove the special meaning of certain characters or
+     words to the shell, such as operators, whitespace, or keywords.
+     There are three types of quoting: matched single quotes,
+     matched double quotes, and backslash. Said features are not available in this first version of shell.
+     .Ss Backslash
+     A backslash preserves the literal meaning of the following
+     character, with the exception of
+     .Aq newline .
+     A backslash preceding a
+     .Aq newline
+     is treated as a line continuation. This feature is not available int this version of shell.
+     .Ss Single Quotes
+     Enclosing characters in single quotes preserves the literal meaning of all
+     the characters (except single quotes, making it impossible to put
+		     single-quotes in a single-quoted string). This feature is not available yet in this version of shell.
+     .Ss Double Quotes
+     Enclosing characters within double quotes preserves the literal
+     meaning of all characters except dollarsign, this functionality is yet to be built.
+     .Ss Reserved Words
+     This version of shell does not have yet the reserved words feature.
+     .Ss Aliases
+     This feature is not supported yet.
+     .Ss Commands
+     The shell interprets the words it reads according to a language, the
+     specification of which is outside the scope of this man page (refer to the
+		     BNF in the
+		     .Tn POSIX
+		     1003.2 document).
+     .Ss Simple Commands and redirections.
+     They are not available yet in this version.
+
+     .Ss Search and Execution
+     There are three types of commands: shell functions, builtin commands, and
+     normal programs -- and the command is searched for (by name) in that order.
+     They each are executed in a different way.
+     .Pp
+     When a shell function is executed, all of the shell positional parameters
+     (except $0, which remains unchanged) are set to the arguments of the shell
+     function.
+     The variables which are explicitly placed in the environment of
+     the command (by placing assignments to them before the function name) are
+     made local to the function and are set to the values given.
+     Then the command given in the function definition is executed.
+     The positional parameters are restored to their original values
+
