@@ -313,7 +313,63 @@ The name of a mail file, that will be checked for the arrival of new mail.
 Overridden by
 .Ev MAILPATH .
 
+.It Ev MAILCHECK
+The frequency in seconds that the shell checks for the arrival of mail
+in the files specified by the
+.Ev MAILPATH
+or the
+.Ev MAIL
+file.
+If set to 0, the check will occur at each prompt.
+.It Ev MAILPATH
+A colon
+.Dq \&:
+separated list of file names, for the shell to check for incoming mail.
+This environment setting overrides the
+.Ev MAIL
+setting.
+There is a maximum of 10 mailboxes that can be monitored at once.
+.It Ev PS1
+The primary prompt string, which defaults to
 
+.Dq $\  ,
+unless you are the superuser, in which case it defaults to
+.Dq #\  .
+.It Ev PS2
+The secondary prompt string, which defaults to
+.Dq \*[Gt]\  .
+
+.It Ev PS4
+Output before each line when execution trace (set -x) is enabled,
+defaults to
+.Dq +\  .
+.It Ev IFS
+Input Field Separators.
+This is normally set to
+.Aq space ,
+.Aq tab ,
+and
+.Aq newline .
+See the
+.Sx White Space Splitting
+section for more details.
+.It Ev TERM
+The default terminal setting for the shell.
+This is inherited by
+children of the shell, and is used in the history editing modes.
+.It Ev HISTSIZE
+The number of lines in the history buffer for the shell.
+.It Ev PWD
+The logical value of the current working directory.  This is set by the
+.Ic cd
+command.
+.It Ev OLDPWD
+The previous logical value of the current working directory.  This is set by
+the
+.Ic cd
+command.
+.It Ev PPID
+The process ID of the parent process of the shell.
 
 
 
