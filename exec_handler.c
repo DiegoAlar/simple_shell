@@ -14,9 +14,7 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 	int status, childPID, _flag = 0;
 	char *_str_ev = NULL;
 
-
-        stat_fun(&_str_ev, &_flag, _args[0], *cicles, av[0], env);
-
+	stat_fun(&_str_ev, &_flag, _args[0], *cicles, av[0], env);
 	if (_str_ev != NULL)
 	{
 		_flag++;
@@ -32,7 +30,7 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		}
 	}
-	if (_flag == 1 && _str_ev == NULL)
+	if (_flag == 0)
 		_printf("%s: %d: %s: command not found\n", av[0], *cicles, _args[0]);
 	if (_flag == 2)
 		free(_str_ev);
