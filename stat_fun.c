@@ -13,7 +13,6 @@
 
 int stat_fun(char **_str, int *_fl, char *_com, int c, char *av_0, char **env)
 {
-	DIR *dir_to_close;
 	struct stat  *bf;
 
 	bf = malloc(sizeof(struct stat));
@@ -23,21 +22,6 @@ int stat_fun(char **_str, int *_fl, char *_com, int c, char *av_0, char **env)
 		*_str = _com;
 	else if (stat(_com, bf) == 0 && S_ISDIR(bf->st_mode))
 		_printf("%s: %d: %s: Permission denied\n", av_0, c, _com);
-	else if (_com[0] == '/')
-	{
-		dir_to_close = opendir(_com);
-		if (dir_to_close == NULL)
-		{
-			_printf("%s: %d: %s: command not found\n", av_0, c, _com);
-
-		}
-		else
-		{
-			closedir(dir_to_close);
-			_printf("%s: %d: %s: Permission denied\n", av_0, c, _com);
-
-		}
-	}
 	else
 	{
 		*_str = func_env(_com, env);
