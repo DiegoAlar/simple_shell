@@ -1,0 +1,84 @@
+.\"The Simple_shell is a project for the Software Academy Holberton school
+.\"	Authors : Diego Alarcon https://github.com/DiegoAlar
+.\"     Mary Gomez https://github.com/mlgomez0/
+.\"
+.Dd November 27, 2019
+.Os
+.Dt SIMPLE_SHELL 1
+.Sh NAME
+.Nm simple_shell
+.Nd command interpreter (shell)
+.Sh SYNOPSIS
+.Nm
+.Bk -words
+.Op Fl aCefnuvxIimqVEb
+.Op Cm +aCefnuvxIimqVEb
+.Ek
+.Bk -words
+.Op Fl o Ar option_name
+.Op Cm +o Ar option_name
+.Ek
+.Bk -words
+.Op Ar command_file Oo Ar argument ... Oc
+.Sh DESCRIPTION
+.Nm
+is meant to mimic the standard command interpreter for the system.
+The current version of
+.Nm
+is in the process of being changed as it is part of a learning process.
+This version has many
+features which make it appear similar in some respects to the dash command interpreter (shell), but it is not a clone.
+Only features designated by
+This man page is not intended
+to be a tutorial or a complete specification of the shell.
+.Ss Overview
+The shell is a command that reads lines from either a file or the
+terminal, interprets them, and generally executes other commands.
+It is the program that is running when a user logs into the system
+(although a user can select a different shell with the
+ .Xr chsh 1
+ command).
+The shell implements a language that has flow control
+constructs, a macro facility that provides a variety of features in
+addition to data storage, along with built in history and line editing
+capabilities.
+It incorporates many features to aid interactive use and
+has the advantage that the interpretative language is common to both
+interactive and non-interactive use (shell scripts).
+That is, commands
+can be typed directly to the running shell or can be put into a file and
+the file can be executed directly by the shell.
+.Ss Invocation
+The command ./hsh will open the terminal, in the meanwhile, this shell ignore aditional arguments, once the shell is open by using enter, the prompt will remain open waiting the user to insert commands.
+When first starting,
+     the shell inspects argument 0, it determines it this argument is an executable file, in such case, it is executed, if not, the shell, investigates it the file is a directory, if not, the shell goes and checks if the argument is a built-in function or it is  part of an executable in the ENV variable (checking in all directories in said variable),
+     After that , the shell reviews the arguments giving, an will pass those to the corresponding process.
+     If command line arguments besides the options have been specified, then
+     the shell treats the first argument as the name of a file from which to
+     read commands (a shell script), and the remaining arguments are set as the
+     positional parameters of the shell ($1, $2, etc).
+     Otherwise, the shell
+     reads commands from its standard input.
+     .Ss Argument List Processing
+
+     The list is under construction for this first release.
+     .Ss Lexical Structure
+
+     The shell reads input in terms of lines from a file and breaks it up into words at whitespace (blanks and tabs),
+     and at certain sequences of characters that are special to the shell called operators.  There are two types of
+     operators: control operators and redirection operators but those are not included in this first shell release.
+
+     .Ss Dynamic mode
+     In the dynamic mode, the simple_shell awaits the user to put the commands to be executed, once those are in the standard input, they are executed.
+
+
+     .Ss Static mode
+     In the static mode, parameter are passed not from standar input but rather piped from another file or process. The syntaxis would be like below:
+
+     echo "qwerty" | ./hsh
+     in which case the result will be:
+     ./hsh: 1: qwerty: not found
+
+     cat test_ls_2 | ./hsh
+     in which case the result will be:
+     whatever execution inside the file test_ls_s
