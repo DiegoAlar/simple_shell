@@ -31,17 +31,15 @@ int main(int ac, char **av, char **env)
 			free(_args);
 			_str = NULL;
 			_args = NULL;
-			if (kill_is)
+			if (kill_is && _report != 0)
 				_printf("#cisfun$ ");
-
 			cicles++;
 		}
 		else
 			_printf("#cisfun$ ");
 
 	}
-
-	if (kill_is)
+	if (kill_is && _report != 0)
 		_printf("\n");
 
 	free(_str);

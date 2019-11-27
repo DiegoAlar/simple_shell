@@ -31,7 +31,7 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 		}
 	}
 	if (_flag == 0)
-		_printf("%s: %d: %s: command not found\n", av[0], *cicles, _args[0]);
+		_printf("%s: %d: %s: not found\n", av[0], *cicles, _args[0]);
 	if (_flag == 2)
 		free(_str_ev);
 	return (1);
