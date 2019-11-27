@@ -52,6 +52,7 @@ int _printf(const char *format, ...);
 void printChar(va_list va, int *p);
 void printString(va_list va, int *p);
 void printInt(va_list va, int *p);
+int fun_count(char *s);
 void printDec(va_list va, int *p);
 int funper(const char *format, int i, va_list toPrint, int *pun);
 int print_Number(int n, int *p);
