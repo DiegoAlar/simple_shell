@@ -14,8 +14,9 @@
 int stat_fun(char **_str, int *_fl, char *_com, int c, char *av_0, char **env)
 {
 	struct stat  *bf;
+	int no_path = 0;
 
-	*_str = func_env(_com, env);
+	*_str = func_env(_com, env, &no_path);
 	if (*_str != NULL)
 		*_fl += 1;
 	if (*_str == NULL)
@@ -38,5 +39,5 @@ int stat_fun(char **_str, int *_fl, char *_com, int c, char *av_0, char **env)
 		else
 			free(bf);
 	}
-	return (1);
+	return (no_path);
 }

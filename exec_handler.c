@@ -11,10 +11,10 @@
 
 int exec_handler(int *cicles, char **_args, char **av, char **env)
 {
-	int status, childPID, _flag = 0;
+	int status, childPID, _flag = 0, no_path;
 	char *_str_ev = NULL;
 
-	stat_fun(&_str_ev, &_flag, _args[0], *cicles, av[0], env);
+	no_path = stat_fun(&_str_ev, &_flag, _args[0], *cicles, av[0], env);
 	if (_str_ev != NULL)
 	{
 		_flag++;
@@ -31,7 +31,10 @@ int exec_handler(int *cicles, char **_args, char **av, char **env)
 		}
 	}
 	if (_flag == 0)
-		_printf("%s: %d: %s: not found\n", av[0], *cicles, _args[0]);
+	{
+		if (no_path != 1)
+			_printf("%s: %d: %s: not found\n", av[0], *cicles, _args[0]);
+	}
 	if (_flag == 2)
 		free(_str_ev);
 	return (1);

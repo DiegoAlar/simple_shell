@@ -6,7 +6,7 @@
   * @env: an array of arrays containing the path
   * Return: a string containing the path or NULL
   */
-char *func_env(char *_com, char **env)
+char *func_env(char *_com, char **env, int *no_path)
 {
 	int i = 0;
 	char *_delim = "=:";
@@ -25,6 +25,7 @@ char *func_env(char *_com, char **env)
 		{
 			while (_token)
 			{
+				*no_path = *no_path + 1;
 				concat_dir = str_concat(_token, _slash);
 				concat_param = str_concat(concat_dir, _com);
 				if (access(concat_param, F_OK) == 0)

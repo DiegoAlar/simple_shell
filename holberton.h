@@ -44,7 +44,7 @@ int fun_cd(char **);
 int fun_pwd(char **);
 int fun_exit(char **);
 int fun_envi(char **);
-char *func_env(char *_com, char **env);
+char *func_env(char *_com, char **env, int *no_path);
 char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 int *_putchar(char c, int *p);
@@ -58,4 +58,5 @@ int funper(const char *format, int i, va_list toPrint, int *pun);
 int print_Number(int n, int *p);
 int _strcmp(char *s1, char *s2);
 int stat_fun(char **_str, int *_fl, char *_com, int c, char *av_0, char **env);
+
 #endif
