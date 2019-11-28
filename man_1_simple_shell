@@ -71,7 +71,38 @@ operators: control operators and redirection operators but those are not include
 
 .Ss Dynamic mode
 In the dynamic mode, the simple_shell awaits the user to put the commands to be executed, once those are in the standard input, they are executed.
-
+./hsh
+#cisfun$ (Here the user can write the command to be executed and press enter)
+#cisfun$ ls (command of example)
+README.md   built_in_handler.c	     holberton.h	 print_integer.c
+_execut.c   bult_in_funcs.c	     hsh		 printf_manual
+_printf.c   exec_handler.c	     main.c		 prueba
+_putchar.c  func_env.c		     man_1_simple_shell  stat_fun.c
+_realloc.c  function_percentage_1.c  man_3_printf	 test_ls_2
+_strcmp.c   h			     percenFunc.c	 token_arg.c
+The program will display all the files in the current directory (this is what ls command does).
+.Ss Most used commands
+grep,
+touch,
+cat,
+less,
+chgrp,
+chmod,
+chown,
+chvt,
+cp,
+cpi,o
+which,
+date,
+ls,
+mkdir,
+pwd,
+dir,
+rm,
+rmdir,
+echo,
+egrep,
+mv.
 
 .Ss Static mode
 In the static mode, parameter are passed not from standar input but rather piped from another file or process. The syntaxis would be like below:
@@ -370,6 +401,14 @@ the
 command.
 .It Ev PPID
 The process ID of the parent process of the shell.
-
-
-
+.Sh INTERNAL FUNCTIONS
+.Bl -tag -width MAILCHECK
+.It Ev exec_fun: This function receives the parameters and determine if it is a builtin or should be reviewed further
+.It Ev built_in_handler: This function select the right builtin function pending of given parameter
+.It Ev exec_handler: This function send the argument for evaluation in stat_fun and makes a fork + execve if applicable
+.It Ev stat_fun: Receives the parameter and sent for evaluation to func_env, evaluate if the parameter is a directory or a current directory file.
+.It Ev func_env: Concatenates the given parameter to each folder in the PATH variable, review if the concatenated string is an executable.
+.It Ev str_concat: Concatenates two strings.
+.It Ev _strdup: Creates a duplicate of a string.
+.It Ev token_arg: Transform the given string into tokens (arguments).
+.It Ev _strcmp: Compares if two string are equal or different.
