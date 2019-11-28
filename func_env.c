@@ -4,6 +4,7 @@
   * func_env - this function will search for a PATH
   * @_com: the command to search in the PATH
   * @env: an array of arrays containing the path
+  * @no_path: counts the number of elements inside PATH variable
   * Return: a string containing the path or NULL
   */
 char *func_env(char *_com, char **env, int *no_path)
